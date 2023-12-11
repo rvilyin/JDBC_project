@@ -18,7 +18,7 @@ public class Util {
             DriverManager.registerDriver(driver);
             connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return connection;
     }
