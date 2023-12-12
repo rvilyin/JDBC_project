@@ -9,22 +9,10 @@ public class Main {
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
         userService.createUsersTable();
-        String name1 = "Sasha";
-        String surname1 = "Ivanov";
-        byte age1 = 20;
-        String name2 = "Pavel";
-        String surname2 = "Sidorov";
-        byte age2 = 16;
-        String name3 = "Masha";
-        String surname3 = "Agafonova";
-        byte age3 = 25;
-        String name4 = "Roman";
-        String surname4 = "Andreev";
-        byte age4 = 15;
-        userService.saveUser(name1, surname1, age1);
-        userService.saveUser(name2, surname2, age2);
-        userService.saveUser(name3, surname3, age3);
-        userService.saveUser(name4, surname4, age4);
+        userService.saveUser("Sasha", "Ivanov", (byte)20);
+        userService.saveUser("Pavel", "Sidorov", (byte)16);
+        userService.saveUser("Masha", "Agafonova", (byte)25);
+        userService.saveUser("Roman", "Andreev", (byte)15);
         List<User> users = userService.getAllUsers();
         System.out.println(users);
         userService.cleanUsersTable();

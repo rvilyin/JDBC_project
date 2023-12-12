@@ -15,16 +15,16 @@ public class UserDaoJDBCImpl implements UserDao {
                 Statement statement = connection.createStatement()) {
             statement.executeUpdate(sql);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
     public void createUsersTable() {
         String sql = "CREATE TABLE IF NOT EXISTS User (" +
-                "id INT NOT NULL AUTO_INCREMENT, " +
+                "id BIGINT NOT NULL AUTO_INCREMENT, " +
                 "name VARCHAR(45) NOT NULL, " +
                 "lastName VARCHAR(45) NOT NULL, " +
-                "age INT NOT NULL, " +
+                "age TINYINT NOT NULL, " +
                 "PRIMARY KEY (id))";
         execute(sql);
     }
@@ -43,7 +43,7 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.setByte(3, age);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -54,13 +54,13 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
     public List<User> getAllUsers() {
         List<User> userList = new ArrayList<>();
-        String sql = "SELECT id, name, lastName, age FROM User";
+        String sql = "SELECT * FROM User";
         try (Connection connection = Util.getConnection();
                 Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
@@ -73,13 +73,13 @@ public class UserDaoJDBCImpl implements UserDao {
                 userList.add(user);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return userList;
     }
 
     public void cleanUsersTable() {
-        String sql = "DELETE FROM User";
+        String sql = "TRUNCATE User";
         execute(sql);
     }
 }
