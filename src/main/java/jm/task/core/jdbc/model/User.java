@@ -1,6 +1,5 @@
 package jm.task.core.jdbc.model;
 
-import javax.annotation.processing.Generated;
 import javax.persistence.*;
 
 @Entity
